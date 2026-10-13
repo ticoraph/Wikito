@@ -1,12 +1,16 @@
 #!/bin/bash
 
-# Load environment variables
+# Load environment variables (from .env locally, or already exported, e.g. by CI)
 if [ -f .env ]; then
     export $(cat .env | grep -v '#' | awk '/=/ {print $1}')
-else
-    echo "Error: .env file not found. Please copy .env.example to .env and fill in the credentials."
-    exit 1
 fi
+
+for var in FTP_HOST FTP_USER FTP_PASSWORD FTP_REMOTE_DIR; do
+    if [ -z "${!var}" ]; then
+        echo "Error: $var is not set. Copy .env.example to .env and fill in the credentials."
+        exit 1
+    fi
+done
 
 if [ -z "$HTPASSWD_PATH" ]; then
     echo "Error: HTPASSWD_PATH is not set in .env (absolute path of .htpasswd on the server)."
@@ -22,7 +26,7 @@ echo "Deploying to SFTP: $FTP_HOST:22"
 
 # .htaccess is uploaded separately (generated above).
 # .htpasswd and data/glossary.json live on the server and are never overwritten.
-lftp -d -c "
+lftp -c "
 set sftp:auto-confirm yes
 set sftp:connect-program 'ssh -a -x -o StrictHostKeyChecking=no'
 open -u $FTP_USER,$FTP_PASSWORD sftp://$FTP_HOST:22
