@@ -1,0 +1,14 @@
+[
+    {
+        "title": "API",
+        "description": "Interface permettant à deux logiciels de communiquer entre eux selon des règles définies."
+    },
+    {
+        "title": "JSON",
+        "description": "Format texte léger pour représenter des données structurées, lisible par les humains et les machines."
+    },
+    {
+        "title": "SFTP",
+        "description": "Protocole de transfert de fichiers chiffré, fonctionnant au-dessus de SSH."
+    }
+]

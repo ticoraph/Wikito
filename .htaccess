@@ -1,0 +1,13 @@
+<IfModule mod_headers.c>
+    <FilesMatch "\.(html|php|json)$">
+        Header set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet, noimageindex"
+    </FilesMatch>
+</IfModule>
+
+<FilesMatch "^(add\.php|insert\.php)$">
+    AuthType Basic
+    AuthName "Acces Restreint"
+    # Chemin absolu du .htpasswd sur le serveur, remplacé par deploy.sh (HTPASSWD_PATH)
+    AuthUserFile __HTPASSWD_PATH__
+    Require valid-user
+</FilesMatch>

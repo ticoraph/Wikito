@@ -1,0 +1,10 @@
+# Exemple de fichier de termes pour traitement automatisé
+# Lignes vides et commentaires sont ignorés
+
+Kubernetes
+Docker
+React
+Angular
+Node.js
+MongoDB
+Redis

@@ -1,0 +1,16 @@
+# Secrets et configuration locale
+.env
+.htpasswd
+
+# Données du wiki (la version de production fait foi, voir scripts/pull-prod-json.sh)
+data/glossary.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Éditeurs et OS
+.vscode/
+.DS_Store
